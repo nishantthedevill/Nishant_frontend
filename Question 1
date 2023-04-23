@@ -1,0 +1,13 @@
+Ques1. - Explain what the simple List component does.
+Answer - Using React, the code creates a straightforward List component. WrappedSingleListItem and WrappedListComponent are its two sub-components.
+Each individual list item is rendered by WrappedSingleListItem, while WrappedListComponent renders the complete list by mapping over an array of objects and rendering WrappedSingleListItem for each one.
+There are four props given to the WrappedSingleListItem component:
+1) index: a number designating an item's position in a list.
+2) a boolean value indicating if the item is selected
+3) onClickHandler: a procedure that responds to the item's click event.
+4) text: a string that represents the item's text content
+It renders an <li> element with a background color of green if isSelected is true and red if isSelected is false. It also attaches an onClick event handler that calls onClickHandler with the index of the item.
+One property is given to the WrappedListComponent:
+1)- items: a collection of objects, each of which has a "text" attribute that corresponds to the text of the list item.
+Every time the items prop changes, it utilises the useState hook to keep the selected index state consistent and the useEffect hook to reset the selected index. Additionally, it defines a handleClick function that, when a list item is clicked, changes the selected index.
+It maps over the items array to render a SingleListItem component for each item, and it also renders an <ul> element with a textAlign style of left. It provides the SingleListItem component with the onClickHandler, text, index, and isSelected properties that it needs.
