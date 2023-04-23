@@ -1,0 +1,21 @@
+Ques 2. What problems / warnings are there with code?
+Answer - The code has a number of issues or warnings:
+1) The definition of the items prop in the WrappedListComponent is PropTypes.array(PropTypes.shapeOf(...")).
+PropTypes.arrayOf(PropTypes.shape(...)) is the correct syntax.  
+2) SelectedIndex's initial state is not specified, which may result in unexpected behaviour.
+3) The SingleListItem's isSelected prop, which should be a boolean indicating if the item is selected or not, is mistakenly given as the selected index.
+4) In SingleListItem, the onClickHandler function is instantly executed rather than being given as a reference to the onClick event handler.
+To fix these problems and optimize the component, the following modifications can be made:
+1) Replace the definition of the items prop in the WrappedListComponent with PropTypes.arrayOf(PropTypes.shape(...])).
+This validator makes sure that the items prop is an array of objects with the desired shape, and if it is not, it will give a more precise error message.
+2) Make selectedIndex's initial state value null.
+3) Rename the SingleListItem's isSelected prop to isSelected=index === selectedIndex.
+4) Change the SingleListItem's onClickHandler prop to onClick=(() => onClickHandler(index)).
+5) Give each SingleListItem a key prop with a distinct value, such as the item's ID or index.
+React can effectively manage the identification of each SingleListItem in the list and update the UI only when necessary by utilising the id as the key prop to ensure that each SingleListItem is uniquely identified.Now, here are some potential reasons why my code may be considered more optimized than the given code:
+1)- 'SingleListItem' component is stored in React.memo which helps avoid unnecessary stuff and it will be re-rendered when the component receives the same props.
+2)- 'useState' and 'useEffect' hooks in the code are used to manage the state of the selected item, short and efficient.
+3) - The List component uses the "useEffect" hook to reset the selected index when the Items property changes and this will keep the component state always in sync with the props.
+4)- The code uses "items && items.map()" so that the map() function is only called if it exists.
+This problem can occur because the second code assumes that the element is always an array because it assigns the element and error if item is null or undefined.
+5)- Overall the code is simpler and easier to read as it does not use any additional components and  functional argument for passing props. 
